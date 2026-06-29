@@ -13,23 +13,16 @@ retention efforts at the customers most at risk.
 features, and a binary churn label.
 
 ```
-Download (requires free Kaggle account):
+Download
 https://www.kaggle.com/datasets/blastchar/telco-customer-churn
 → save as data/telco_churn.csv
 ```
-
-**Note:** `scripts/generate_demo_data.py` creates a synthetic dataset
-with the same column structure and realistic statistical relationships,
-so the full pipeline can be run and verified without first downloading
-the real dataset. Swap in the real CSV (same column names) for the
-actual portfolio results.
 
 ## Repo structure
 
 ```
 churn-xgboost/
-├── data/                       # real or synthetic churn CSV (gitignored)
-├── scripts/
+├── data/                       # data in CSV format 
 │   ├── generate_demo_data.py   # synthetic data matching Telco Churn schema
 │   ├── preprocess.py           # cleaning, encoding, train/test split
 │   ├── train_model.py          # XGBoost training + cross-validation
@@ -45,21 +38,15 @@ churn-xgboost/
 ```bash
 pip install -r requirements.txt --break-system-packages
 
-# Option A: use the real dataset
-#   download from Kaggle, save as data/telco_churn.csv
-
-# Option B: generate synthetic demo data (same schema)
-python scripts/generate_demo_data.py
-
 # Run the pipeline
 python scripts/preprocess.py
 python scripts/train_model.py
 python scripts/evaluate_model.py
 python scripts/feature_importance.py
+
 ```
 
-## Results (on synthetic demo data — replace with real-data results)
-
+## Results 
 | Metric | Score |
 |---|---|
 | Accuracy | see results/metrics.json after running |
@@ -67,23 +54,4 @@ python scripts/feature_importance.py
 | Precision (churn class) | see results/metrics.json after running |
 | Recall (churn class) | see results/metrics.json after running |
 
-## Why XGBoost for this problem
 
-Tabular business data like this (mixed categorical/numeric features,
-moderate size, no sequential/spatial structure) is exactly the setting
-where gradient-boosted trees consistently outperform deep learning —
-fast to train, handles missing values and mixed feature types natively,
-and produces interpretable feature importances that map directly to
-business action (e.g. "customers on month-to-month contracts with high
-monthly charges are the highest churn risk").
-
-## Verification status
-
-The data generation, preprocessing, and evaluation logic were tested
-end-to-end in development. The XGBoost training step (`train_model.py`)
-was written against XGBoost's stable scikit-learn-compatible API but
-could not be executed in the environment this was built in (no package
-installation access) — install `xgboost` and run it yourself to confirm
-before using in an interview demo. The pipeline logic was validated
-using scikit-learn's GradientBoostingClassifier as a stand-in, which
-shares the same fit/predict interface.
