@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Generated data and results - regenerate with the scripts, don't commit
+data/*.csv
+results/*.png
+results/*.json
+results/*.pkl
+results/*.csv
+
+!data/.gitkeep
+!results/.gitkeep
