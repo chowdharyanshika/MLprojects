@@ -1,21 +1,14 @@
 # Customer Churn Prediction with XGBoost
 
-A complete, end-to-end churn prediction pipeline: data cleaning, feature
-engineering, model training with XGBoost, evaluation, and feature
-importance interpretation — built to demonstrate core data science
-skills on a general business problem (as opposed to the genomics-focused
-[prs-agent](../prs-agent) project).
-
 ## Problem
 
 Predict which customers are likely to churn (cancel their subscription)
-based on account, service, and billing data, so a business can target
+based on account, service, and billing data of a Telcom company so a business can target
 retention efforts at the customers most at risk.
 
 ## Dataset
 
 [Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
-(IBM sample dataset, widely used as a churn-prediction benchmark) —
 ~7,000 telecom customers with demographic, account, and service
 features, and a binary churn label.
 
